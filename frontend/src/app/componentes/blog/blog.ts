@@ -13,6 +13,12 @@ export class Blog implements OnInit {
 
   constructor(private cdr: ChangeDetectorRef, private peticion: Peticion){}
 
+  trackById(index: number, item: any) {
+  return item.id;
+}
+
+  datos: any = []
+
   ngOnInit(): void { 
     this.mostrarUsaurios() 
   }
@@ -24,20 +30,11 @@ export class Blog implements OnInit {
       payload: {}
     }
       this.peticion.get(post.host+post.path).then((res:any)=>{
-        console.log(res)
+      this.datos = res;
+      console.log(this.datos);
+      this.cdr.detectChanges(); 
       })
   }
 
 
-  // cargarTodas(lugarId: string){
-  //   let post = {
-  //     host: this.peticion.urlReal,
-  //     path: "/lotes/cargarPorLugar/" + lugarId,
-  //     payload:{}
-  //   }
-  //   this.peticion.get(post.host + post.path).then((res: any) => {
-  //     this.datos = res.datos.datos
-  //     console.log(this.datos[0])
-  //   })
-  // }
 }
