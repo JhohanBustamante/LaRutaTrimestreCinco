@@ -10,15 +10,45 @@ import lombok.*;
 @NoArgsConstructor
 
 public class Comunidad {
-    @Id
+     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column( unique= true, nullable= false)
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Tematica tematica;
+
+    @Column(length = 45)
     private String nombre;
-    @Column (unique= false, nullable= false)
+
+    @Column(columnDefinition = "TEXT")
     private String descripcion;
-    @Column (unique= false, nullable= false)
-    private String especialidad;
-    @Column (unique= false, nullable= false)
-    private String estado;
-}
+
+    @Enumerated(EnumType.STRING)
+    private Tipo tipo;
+
+    @Column(name = "id_creador")
+    private Integer idCreador;
+
+    public enum Tematica {
+        ACTIVIDAD_FÍSICA("Actividad física"),
+        COACH_DEPORTIVO("Coach deportivo"),
+        NUTRICIÓN("Nutrición");
+
+        private final String value;
+        Tematica(String value) { this.value = value; }
+        public String getValue() { return value; }
+    }
+
+    public enum Tipo {
+        CHAT_GRUPAL("Chat Grupal"),
+        GRUPO("Grupo"),
+        COMUNIDAD("Comunidad"),
+        GRAN_COMUNIDAD("Gran Comunidad");
+
+        private final String value;
+        Tipo(String value) { this.value = value; }
+        public String getValue() { return value; }
+    }
+
+    }

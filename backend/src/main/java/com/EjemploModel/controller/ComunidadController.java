@@ -2,13 +2,19 @@ package com.EjemploModel.controller;
 
 import com.EjemploModel.model.Comunidad;
 import com.EjemploModel.service.ComunidadService;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import java.util.Map;
+
+
+@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 @RestController
-@RequestMapping("/api/comunidades")
-@CrossOrigin(origins = "http://localhost:4200")
+@Controller
 
 public class ComunidadController {
 
@@ -18,7 +24,7 @@ public class ComunidadController {
         this.comunidadService= comunidadService;
     }
 
-    @GetMapping
+    @GetMapping("/api/comunidades")
     public List<Comunidad> listarComunidades(){
         return comunidadService.listarTodos();
     }
@@ -28,9 +34,26 @@ public class ComunidadController {
         return comunidadService.buscarPorId(id);
     }
 
-    @PostMapping
-    public Comunidad crear (@RequestBody Comunidad comunidad){
-        return comunidadService.guardar(comunidad);
+       @PostMapping("/api/crear")
+    public ResponseEntity crear (@RequestBody Comunidad comunidad){
+
+        if (comunidadService.buscarPorNombre(comunidad.getNombre()) != null){
+        return ResponseEntity
+                .badRequest()
+                .body(Map.of(
+                    "estado", false,
+                    "mensaje", "Ya existe una comunidad con ese nombre"
+                ));
+        }
+                Comunidad guardada= comunidadService.guardar(comunidad);
+
+                return ResponseEntity
+                        .ok(Map.of(
+                            "estado", true,
+                            "mensaje", "Comunidad creada correctamente",
+                            "comunidad", guardada
+                            ));
+                    
     }
     
     @PutMapping("/{id}")

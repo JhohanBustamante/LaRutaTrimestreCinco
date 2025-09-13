@@ -3,30 +3,85 @@
 <div class="container">
     <br>
     <div class="row">
-    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
-                type="button" role="tab" aria-controls="pills-home" aria-selected="true">Comunidades</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
-                type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Crear
-                Comunidades</button>
-        </li>
-    </ul>
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
+                    type="button" role="tab" aria-controls="pills-home" aria-selected="true">Comunidades</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+                    type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Crear
+                    Comunidades</button>
+            </li>
+        </ul>
 
-        <div class="row">
-            <div *ngFor="let comunidad of comunidades" class="mostrarCont col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
-                <div class="card">
-                    <img src="/imagenes/static/imgGymUno.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ comunidad.nombre }}</h5>
-                        <p class="card-text">{{ comunidad.descripcion }}</p>
-                        <a href="..." class="btn btn-primary">Ver más</a>
+        
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
+                    tabindex="0">
+                    <div class="row">
+                    <div *ngFor="let comunidad of comunidades" class="mostrarCont col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
+                        <div class="card">
+                            <img src="/imagenes/static/imgGymUno.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{comunidad.nombre}}</h5>
+                                <p class="card-text">{{comunidad.descripcion}}</p>
+                                <h6>Tematica:</h6>
+                                <p class="card-text">{{comunidad.tematica}}</p>
+                                <a href="/servicios" class="btn btn-primary">Ver más</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="row">
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+            <div class="row" id="contenedorCrear">
+                <div class="mostrarCont col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div class="mb-3">
+                        <label for="nuevaPublicacionPersonal" class="form-label">¿Algo nuevo?</label>
+                        <input type="text" class="form-control" [(ngModel)]="nuevaComunidad.nombre"
+                            id="nuevaPublicacionPersonal" placeholder="Describe el contenido, por favor">
+                    </div>
+                    <div class="mb-3 ">
+                        <label for="exampleFormControlTextarea1" class="form-label">Descripción del
+                            contenido</label>
+                        <textarea class="form-control" [(ngModel)]="nuevaComunidad.descripcion"
+                            id="exampleFormControlTextarea1" rows="5"
+                            placeholder="Descripción de lo que desees comentarnos. Con todo gusto te escuchamos."></textarea>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Temática</label>
+                    <select class="form-control" [(ngModel)]="nuevaComunidad.tematica">
+                        <option value="">Seleccione</option>
+                        <option value="ACTIVIDAD_FÍSICA">Actividad física</option>
+                        <option value="COACH_DEPORTIVO">Coach deportivo</option>
+                        <option value="NUTRICIÓN">Nutrición</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Tipo</label>
+                    <select class="form-control" [(ngModel)]="nuevaComunidad.tipo">
+                        <option value="">Seleccione</option>
+                        <option value="CHAT_GRUPAL">Chat Grupal</option>
+                        <option value="GRUPO">Grupo</option>
+                        <option value="COMUNIDAD">Comunidad</option>
+                        <option value="GRAN_COMUNIDAD">Gran Comunidad</option>
+                    </select>
+                </div>
 
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div class="mb-3">
+                        <label for="formFileMultiple" class="form-label">Seleccionar varios archivos</label>
+                        <input class="form-control" type="file" id="formFileMultiple" multiple>
+                    </div>
+
+                    <button type="button" class="btn btn-primary" (click)="crearComunidad()">Crear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -10,13 +10,8 @@ main div.row {
   padding-bottom: 20px;
 }
 
-div.mostrarCont {
-  cursor: pointer;
-  transition: all 0.5s ease-in-out;
-}
 main div.container div.card {
    border-radius: 10px;
-   width: 60%;
 }
 
 #subirServicio {
@@ -33,6 +28,7 @@ main div.container div.card {
     overflow-y: auto;
     overflow-x: hidden;
     margin-top: 10px;
+    display: flex;
 }
 
 a.btn-primary {
@@ -41,9 +37,7 @@ a.btn-primary {
     position: absolute;
     top: 5px;
 }
-.oculto {
-    display:contents;
-}
+
 
 #contenedorCrear{
     background-color: #afc8d6ff;
@@ -56,7 +50,7 @@ a.btn-primary {
 }
 .footer-bottom {
   border-top: 1px solid var(--border);
-  text-align: center;   /* <-- centra el texto */
+  text-align: center;   
   padding: 1rem;
   font-size: 0.875rem;
   color: var(--muted);

@@ -21,6 +21,10 @@ public class ComunidadService {
         return comunidadRepository.save(comunidad);
     }
 
+    public Comunidad buscarPorNombre(String nombre){
+        return comunidadRepository.findByNombre(nombre).orElse(null);
+    }
+
     public Comunidad buscarPorId(Long id){
         return comunidadRepository.findById(id).orElse(null);
     }
