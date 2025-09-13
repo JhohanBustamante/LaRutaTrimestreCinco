@@ -9,13 +9,12 @@ export class Peticion {
 
   constructor(private http: HttpClient) { }
 
-  urlReal: string = "http://localhost:3000"
+  urlReal: string = "http://localhost:8080"
   requestOptions: any = {}
 
   post = (url: string, payload: {}) => {
 
     let promesa = new Promise((resolve, reject) => {
-
       this.requestOptions =  {
         headers: new HttpHeaders({
         }), withCredentials: true
@@ -37,7 +36,7 @@ export class Peticion {
       this.requestOptions =  {
         headers: new HttpHeaders({
          //"":""
-        }), withCredentials: true
+        }), withCredentials: false
       }
       this.http.get(url, this.requestOptions).toPromise()
       .then((res:any)=>{
