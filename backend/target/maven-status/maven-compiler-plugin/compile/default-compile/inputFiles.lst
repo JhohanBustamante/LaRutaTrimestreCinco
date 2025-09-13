@@ -1,5 +1,9 @@
-/Users/Jhohan/Desktop/LaRuta/backend/src/main/java/com/EjemploModel/DemoApplication.java
-/Users/Jhohan/Desktop/LaRuta/backend/src/main/java/com/EjemploModel/controller/UsuarioController.java
-/Users/Jhohan/Desktop/LaRuta/backend/src/main/java/com/EjemploModel/model/Usuario.java
-/Users/Jhohan/Desktop/LaRuta/backend/src/main/java/com/EjemploModel/repository/UsuarioRepository.java
-/Users/Jhohan/Desktop/LaRuta/backend/src/main/java/com/EjemploModel/service/UsuarioService.java
+C:\Users\wendy\Downloads\ALGORITMOS\DOCUMENTOS KEVIN\Trimestre cinco\backend\src\main\java\com\EjemploModel\controller\ComunidadController.java
+C:\Users\wendy\Downloads\ALGORITMOS\DOCUMENTOS KEVIN\Trimestre cinco\backend\src\main\java\com\EjemploModel\controller\UsuarioController.java
+C:\Users\wendy\Downloads\ALGORITMOS\DOCUMENTOS KEVIN\Trimestre cinco\backend\src\main\java\com\EjemploModel\DemoApplication.java
+C:\Users\wendy\Downloads\ALGORITMOS\DOCUMENTOS KEVIN\Trimestre cinco\backend\src\main\java\com\EjemploModel\model\Comunidad.java
+C:\Users\wendy\Downloads\ALGORITMOS\DOCUMENTOS KEVIN\Trimestre cinco\backend\src\main\java\com\EjemploModel\model\Usuario.java
+C:\Users\wendy\Downloads\ALGORITMOS\DOCUMENTOS KEVIN\Trimestre cinco\backend\src\main\java\com\EjemploModel\repository\ComunidadRepository.java
+C:\Users\wendy\Downloads\ALGORITMOS\DOCUMENTOS KEVIN\Trimestre cinco\backend\src\main\java\com\EjemploModel\repository\UsuarioRepository.java
+C:\Users\wendy\Downloads\ALGORITMOS\DOCUMENTOS KEVIN\Trimestre cinco\backend\src\main\java\com\EjemploModel\service\ComunidadService.java
+C:\Users\wendy\Downloads\ALGORITMOS\DOCUMENTOS KEVIN\Trimestre cinco\backend\src\main\java\com\EjemploModel\service\UsuarioService.java
