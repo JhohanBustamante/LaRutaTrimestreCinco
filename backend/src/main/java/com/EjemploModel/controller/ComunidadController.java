@@ -34,6 +34,21 @@ public class ComunidadController {
         return comunidadService.buscarPorId(id);
     }
 
+      @GetMapping("/api/comunidad/nombre/{nombre}")
+    public ResponseEntity<?> buscarPorNombre(@PathVariable String nombre){
+        Comunidad comunidad= comunidadService.buscarPorNombre(nombre);
+
+
+        
+        if (comunidad != null){
+            return ResponseEntity.ok(comunidad);
+        } else{
+            return ResponseEntity
+            .status(404)
+            .body(Map.of("estado", false, "mensaje", "No se encontró la comunidad por ese nombre"));
+        }
+    }
+
        @PostMapping("/api/crear")
     public ResponseEntity crear (@RequestBody Comunidad comunidad){
 
@@ -56,6 +71,8 @@ public class ComunidadController {
                     
     }
     
+
+
     @PutMapping("/{id}")
     public Comunidad actualizar(@PathVariable Long id, @RequestBody Comunidad comunidad){
         comunidad.setId(id);
