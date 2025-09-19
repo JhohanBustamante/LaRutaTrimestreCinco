@@ -1,31 +1,22 @@
-nav.navbar {
-  background-color: rgb(18, 113, 168) !important;
-  width: 100%;
+.custom-navbar {
+  background: linear-gradient(90deg, #f53730, #ff6f61);
+  padding: 10px 20px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
 }
 
-nav.navbar img {
-  margin-left: 20px;
-  margin-right: 20px;
-  width: 60px;
-  height: 60px;
+.logo-navbar {
+  width: 80px;
+  height: 100px;
+  object-fit: cover;
 }
 
-nav.navbar a#tituloNav {
-  margin-left: 20px;
+.navbar-nav .nav-link {
+  color: #fff !important;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
-nav.navbar li {
-  padding-left: 20px;
-  padding-bottom: 0px;
-  padding-top: 10px;
-}
-
-nav.navbar a {
-  color: white !important ;
-  font-weight: bold;
-}
-
-nav.navbar li.nav-item label {
-  color: white !important ;
-  font-weight: bold !important;
+.navbar-nav .nav-link:hover {
+  color: #ffe082 !important;
+  transform: translateY(-2px);
 }

@@ -31,6 +31,14 @@ main div.container div.card {
     display: flex;
 }
 
+#botonEliminar{
+    margin-top: 50px;
+    background-color: red;
+    border-color: red;
+}
+#modal{
+    margin-top: 100px;
+    }
 a.btn-primary {
     width: 90px;
     height: 40px;
@@ -40,7 +48,9 @@ a.btn-primary {
 
 
 #contenedorCrear{
-    background-color: #afc8d6ff;
+    background-color: rgba(42, 80, 102, 0.158);
+    border: solid 1px black;
+    border-radius: 10px;
 }
 .btones {
     background-color: azure;
@@ -55,7 +65,9 @@ a.btn-primary {
   font-size: 0.875rem;
   color: var(--muted);
 }
-
+label{
+color: white;
+}
 
 
 @media (max-width: 991px) and (min-width: 500px) {

@@ -73,13 +73,13 @@ public class ComunidadController {
     
 
 
-    @PutMapping("/{id}")
+    @PutMapping("api/actualizar/{id}")
     public Comunidad actualizar(@PathVariable Long id, @RequestBody Comunidad comunidad){
         comunidad.setId(id);
         return comunidadService.guardar(comunidad);
     }
     
-    @DeleteMapping("/{id}")
+    @DeleteMapping("api/eliminar/{id}")
     public void eliminar(@PathVariable Long id) {
         comunidadService.eliminar(id);
     }
