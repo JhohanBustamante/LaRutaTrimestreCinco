@@ -1,1 +1,31 @@
-<p>registro works!</p>
+<div class="registro col-12 col-md-6">
+    <div class="mb-3 col-9" id="titulo">
+        <h5>Registrarse</h5>
+    </div>
+    <div class="mb-3 col-6">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" aria-describedby="emailHelp" [(ngModel)]="nombre">
+    </div>
+    <div class="mb-3 col-6">
+        <label for="entradaDos" class="form-label">Apellido</label>
+        <input type="text" class="form-control" id="entradaDos" aria-describedby="emailHelp" [(ngModel)]="apellido">
+    </div>
+    <div class="mb-3 col-6">
+        <label for="apodo" class="form-label">Apodo</label>
+        <input type="text" class="form-control" id="apodo" aria-describedby="emailHelp" [(ngModel)]="apodo">
+    </div>
+    <div class="mb-3 col-6">
+        <label for="correo" class="form-label">Correo</label>
+        <input type="email" class="form-control" id="correo" aria-describedby="emailHelp" [(ngModel)]="correo">
+    </div>
+    <div class="mb-3 col-6">
+        <label for="contrasena" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" id="contrasena" [(ngModel)]="contrasena">
+    </div>
+    <div id="contBut">
+        <button type="submit" class="btn btn-primary" (click)="registrar()">Enviar</button>
+    </div>
+    <div id="contBot">
+        <a routerLink="/inicio" type="submit" class="btn btn-primary">Ir al inicio </a>
+    </div>
+</div>

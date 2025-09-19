@@ -30,33 +30,6 @@ public class UsuarioController {
     return usuarioService.buscarPorId(id);
   }
 
-  @PostMapping("/guardar")
-  public ResponseEntity<?> guardarUsuario(@RequestBody Usuario newUsuario) {
-    if (usuarioService.buscarPorApodo(newUsuario.getApodo()) != null) {
-      return ResponseEntity
-          .badRequest()
-          .body(Map.of("estado", false, "mensaje", "Ya existe un usuario con ese apodo"));
-    } else if (usuarioService.buscarPorCorreo(newUsuario.getCorreo()) != null) {
-      return ResponseEntity
-          .badRequest()
-          .body(Map.of("estado", false, "mensaje", "Ya existe un usuario con ese correo"));
-    } else {
-      Usuario guardado = usuarioService.guardar(newUsuario);
-      return ResponseEntity
-          .ok(Map.of("estado", true, "usuario", guardado));
-    }
-  }
-
-  @PostMapping("/iniciarSesion")
-  public ResponseEntity<?> iniciarSesion(@RequestBody Usuario usuario) {
-    Usuario iniciado = usuarioService.validacionInicio(usuario.getApodo(), usuario.getCorreo(),
-        usuario.getContrasena());
-    if (iniciado == null) {
-      return ResponseEntity.ok(Map.of("estado", false));
-    }
-    return ResponseEntity.ok(Map.of("estado", true, "resultado", iniciado));
-  }
-
   @PutMapping("/actualizar/{id}")
 public ResponseEntity<?> actualizarUsuario(
     @PathVariable Long id,

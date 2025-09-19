@@ -95,3 +95,10 @@ export class ComunidadComponent implements OnInit {
   }
 
 }
+
+// const headers = new HttpHeaders({
+//   'Authorization': `Bearer ${localStorage.getItem("token")}`
+// });
+
+// this.http.post("http://localhost:8080/comunidad/crear", payload, { headers })
+//   .subscribe(res => console.log(res));

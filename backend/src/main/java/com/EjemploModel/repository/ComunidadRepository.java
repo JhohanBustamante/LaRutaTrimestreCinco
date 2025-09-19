@@ -8,3 +8,6 @@ import com.EjemploModel.model.Comunidad;
 public interface ComunidadRepository extends JpaRepository<Comunidad, Long> {
     Optional<Comunidad> findByNombre(String nombre);
 }
+
+
+// añadir funcionalidad para ver comunidades por apodo

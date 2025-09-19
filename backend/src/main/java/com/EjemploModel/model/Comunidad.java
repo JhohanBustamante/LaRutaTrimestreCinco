@@ -10,7 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 
 public class Comunidad {
-     @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -24,9 +24,6 @@ public class Comunidad {
     @Column(columnDefinition = "TEXT")
     private String descripcion;
 
-    
-    private Tipo tipo;
-
     @Column(name = "id_creador")
     private Integer idCreador;
 
@@ -35,7 +32,6 @@ public class Comunidad {
         GRUPO("Grupo"),
         COMUNIDAD("Comunidad"),
         GRAN_COMUNIDAD("Gran Comunidad");
-
         private final String value;
         Tipo(String value) { this.value = value; }
         public String getValue() { return value; }

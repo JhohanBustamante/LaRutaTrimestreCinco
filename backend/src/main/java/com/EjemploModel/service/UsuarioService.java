@@ -46,28 +46,20 @@ public class UsuarioService {
         if (datosNuevos.getNombre() != null && !datosNuevos.getNombre().isEmpty()) {
             usuario.setNombre(datosNuevos.getNombre());
         }
-
         if (datosNuevos.getApodo() != null && !datosNuevos.getApodo().isEmpty()) {
             usuario.setApodo(datosNuevos.getApodo());
         }
-
         if (datosNuevos.getContrasena() != null && !datosNuevos.getContrasena().isEmpty()) {
             usuario.setContrasena(datosNuevos.getContrasena());
         }
-
         if (datosNuevos.getApellido() != null && !datosNuevos.getApellido().isEmpty()) {
             usuario.setApellido(datosNuevos.getApellido());
         }
-
         if (datosNuevos.getCorreo() != null && !datosNuevos.getCorreo().isEmpty()) {
             usuario.setCorreo(datosNuevos.getCorreo());
         }
         if (datosNuevos.getAltura() > 0) {
             usuario.setAltura(datosNuevos.getAltura());
-        }
-
-        if (datosNuevos.getRol() != null) {
-            usuario.setRol(datosNuevos.getRol());
         }
 
         return usuarioRepository.save(usuario);
