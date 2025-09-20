@@ -7,14 +7,19 @@ import { ComunidadComponent } from './componentes/comunidad/comunidad.component'
 import { FavoritosComponent } from './componentes/favoritos/favoritos.component';
 import { Registro } from './componentes/registro/registro';
 import { BlogAdmin } from './componentes/blog-admin/blog-admin';
+import { BlogAdminStatico } from './componentes/blog-admin-statico/blog-admin-statico';
+import { ReporteStatico } from './componentes/reporte-statico/reporte-statico';
+import { ReporteMulti } from './componentes/reporte-multi/reporte-multi';
+import { AuthGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
-    { path: "", component: InicioSesion, pathMatch: "full" },
-    { path: "blog", component: BlogPrincipal },
-    { path: "perfil", component: Perfil },
-    { path: "servicios", component: ServicioComponent },
-    { path: "comunidades", component: ComunidadComponent },
-    { path: "favoritos", component: FavoritosComponent },
-    { path: "registro", component: Registro},
-    { path: "adminBlog", component: BlogAdmin}
+    { path: 'login', loadComponent: () => import('./componentes/inicio-sesion/inicio-sesion').then(m => m.InicioSesion) },
+    { path: '', redirectTo: '/login', pathMatch: 'full' },
+    { path: 'blog', component: BlogPrincipal, canActivate: [AuthGuard] },
+    { path: 'perfil', component: Perfil, canActivate: [AuthGuard] },
+    { path: 'servicios', component: ServicioComponent, canActivate: [AuthGuard] },
+    { path: 'comunidades', component: ComunidadComponent, canActivate: [AuthGuard] },
+    { path: 'favoritos', component: FavoritosComponent, canActivate: [AuthGuard] },
+    { path: 'registro', component: Registro },
 ];
+

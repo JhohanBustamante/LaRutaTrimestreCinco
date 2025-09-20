@@ -45,8 +45,14 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
         if (!usuarioRepository.existsByApodo(loginRequest.getApodo())) {
-            return ResponseEntity.ok(Map.of("success", false,"message", "Error: apodo no uso"));
+            return ResponseEntity.ok(Map.of("success", false, "message", "Apodo no existe"));
         }
+
+        Usuario usuario = usuarioRepository.findByApodo(loginRequest.getApodo()).orElse(null);
+        if (usuario == null || !encoder.matches(loginRequest.getContrasena(), usuario.getContrasena())) {
+            return ResponseEntity.ok(Map.of("success", false, "message", "Contraseña incorrecta"));
+        }
+
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getApodo(), loginRequest.getContrasena()));
 
@@ -65,11 +71,11 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody SignupRequest signUpRequest) {
         if (usuarioRepository.existsByApodo(signUpRequest.getApodo())) {
-            return ResponseEntity.ok(Map.of("success", false,"message", "Error: apodo en uso"));
+            return ResponseEntity.ok(Map.of("success", false, "message", "Error: apodo en uso"));
         }
 
         if (usuarioRepository.existsByCorreo(signUpRequest.getCorreo())) {
-            return ResponseEntity.ok(Map.of("success", false,"message", "Error: correo en uso"));
+            return ResponseEntity.ok(Map.of("success", false, "message", "Error: correo en uso"));
         }
 
         Usuario user = new Usuario();
@@ -84,6 +90,6 @@ public class AuthController {
         user.getRoles().add(userRole);
         usuarioRepository.save(user);
 
-        return ResponseEntity.ok(Map.of("success", true,"message", "Usuario registado"));
+        return ResponseEntity.ok(Map.of("success", true, "message", "Usuario registado"));
     }
 }

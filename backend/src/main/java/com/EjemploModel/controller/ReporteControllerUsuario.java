@@ -24,4 +24,5 @@ public class ReporteControllerUsuario {
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(new InputStreamResource(bis));
     }
+    
 }

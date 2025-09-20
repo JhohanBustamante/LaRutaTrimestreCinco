@@ -20,4 +20,8 @@ public class ReporteMultiCriterioService {
             filtro.getCategoria(), filtro.getEstado(),
             filtro.getCantidadMin(), filtro.getCantidadMax());
     }
+    
+    public Reporte crearReporte(Reporte reporte) {
+        return reporteRepository.save(reporte);
+    }
 }

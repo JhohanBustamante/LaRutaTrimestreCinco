@@ -1,5 +1,6 @@
 package com.EjemploModel.service;
 
+import com.EjemploModel.dto.UsuarioDto;
 import com.EjemploModel.model.Usuario;
 import com.EjemploModel.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
@@ -13,9 +14,13 @@ public class UsuarioService {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public List<Usuario> listarTodos() {
-        return usuarioRepository.findAll();
+    public List<UsuarioDto> listarTodos() {
+    return usuarioRepository.findAll()
+            .stream()
+            .map(u -> new UsuarioDto(u.getId(), u.getNombre(), u.getCorreo(), u.getApodo()))
+            .toList();
     }
+
 
     public Usuario guardar(Usuario usuario) {
         return usuarioRepository.save(usuario);
@@ -33,8 +38,8 @@ public class UsuarioService {
         return usuarioRepository.findByCorreo(correo).orElse(null);
     }
 
-    public Usuario validacionInicio(String apodo, String correo ,String contrasena){
-        return usuarioRepository.findByApodoAndContrasenaOrCorreoAndContrasena(apodo, contrasena, correo, contrasena).orElse(null);
+    public Usuario validacionInicio(String apodo, String contrasena){
+        return usuarioRepository.findByApodoAndContrasena(apodo, contrasena).orElse(null);
     }
 
     public void eliminar(Long id) {

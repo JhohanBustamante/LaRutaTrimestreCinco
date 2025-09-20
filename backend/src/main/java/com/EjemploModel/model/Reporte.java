@@ -24,7 +24,7 @@ public class Reporte {
     @ManyToOne
     @JoinColumn(name = "comunidad_id")
     private Comunidad comunidad;
-
+    private Double precio;
     private String categoria;
     private String estado;
     private LocalDate fecha;

@@ -3,6 +3,9 @@ package com.EjemploModel.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,6 +15,10 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Comunidad {
+    @ManyToMany
+    @JsonIgnore
+    @JsonManagedReference
+    private List<Usuario> usuarios;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,7 +41,7 @@ public class Comunidad {
     private String categoria;
     private String estado;
     private LocalDate fecha;
-    
+
     public enum Tipo {
         CHAT_GRUPAL("Chat Grupal"),
         GRUPO("Grupo"),
@@ -43,7 +50,12 @@ public class Comunidad {
 
         private final String value;
 
-        Tipo(String value) { this.value = value; }
-        public String getValue() { return value; }
+        Tipo(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
     }
 }

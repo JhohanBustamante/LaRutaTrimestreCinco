@@ -54,10 +54,17 @@ public class JwtUtils {
 
     public boolean validateJwtToken(String token) {
         try {
-            Jwts.parserBuilder().setSigningKey(getSigningKey()).build().parseClaimsJws(token);
-            return true;
-        } catch (JwtException | IllegalArgumentException e) {
-        }
-        return false;
+        Jwts.parserBuilder().setSigningKey(getSigningKey()).build().parseClaimsJws(token);
+        return true;
+    } catch (io.jsonwebtoken.security.SignatureException e) {
+        System.out.println("Error: Firma JWT inválida -> " + e.getMessage());
+    } catch (io.jsonwebtoken.ExpiredJwtException e) {
+        System.out.println("Error: Token expirado -> " + e.getMessage());
+    } catch (io.jsonwebtoken.MalformedJwtException e) {
+        System.out.println("Error: Token malformado -> " + e.getMessage());
+    } catch (IllegalArgumentException e) {
+        System.out.println("Error: Token vacío o nulo -> " + e.getMessage());
+    }
+    return false;
     }
 }

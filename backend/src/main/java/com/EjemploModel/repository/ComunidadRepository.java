@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.EjemploModel.model.Comunidad;
+import com.EjemploModel.model.Reporte;
 import com.EjemploModel.dto.ReporteDto;
 
 public interface ComunidadRepository extends JpaRepository<Comunidad, Long> {
@@ -24,5 +25,7 @@ public interface ComunidadRepository extends JpaRepository<Comunidad, Long> {
                 WHERE u.apodo = :apodo
             """)
     List<ReporteDto> findComunidadesPorApodo(@Param("apodo") String apodo);
+
+    List<Comunidad> findByTipo(Comunidad.Tipo tipo);
 
 }

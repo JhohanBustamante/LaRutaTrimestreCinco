@@ -15,17 +15,18 @@ export class Peticion {
   post = (url: string, payload: {}, token?: string) => {
 
     let promesa = new Promise((resolve, reject) => {
-      this.requestOptions =  {
-        headers: new HttpHeaders(
-          token ? { Authorization: `Bearer ${token}` } : {}
-        ), withCredentials: true
+      this.requestOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          ...(token ? { Authorization: `Bearer ${token}` } : {})
+        }), withCredentials: true
       }
       this.http.post(url, payload, this.requestOptions).toPromise()
-      .then((res:any)=>{
-        resolve(res)
-      }).catch((error:any)=>{
-        reject(error)
-      })
+        .then((res: any) => {
+          resolve(res)
+        }).catch((error: any) => {
+          reject(error)
+        })
     })
     return promesa
   }
@@ -34,36 +35,36 @@ export class Peticion {
 
     let promesa = new Promise((resolve, reject) => {
 
-      this.requestOptions =  {
+      this.requestOptions = {
         headers: new HttpHeaders(
           token ? { Authorization: `Bearer ${token}` } : {}
         ), withCredentials: true
       }
       this.http.get(url, this.requestOptions).toPromise()
-      .then((res:any)=>{
-        resolve(res)
-      }).catch((error:any)=>{
-        reject(error)
-      })
+        .then((res: any) => {
+          resolve(res)
+        }).catch((error: any) => {
+          reject(error)
+        })
     })
     return promesa
   }
 
-  put = (url: string, payload: {}) => {
+  put = (url: string, payload: {}, token?: string) => {
 
     let promesa = new Promise((resolve, reject) => {
 
-      this.requestOptions =  {
-        headers: new HttpHeaders({
-         //"":""
-        }), withCredentials: true
+      this.requestOptions = {
+        headers: new HttpHeaders(
+          token ? { Authorization: `Bearer ${token}` } : {}
+        ), withCredentials: true
       }
       this.http.put(url, payload, this.requestOptions).toPromise()
-      .then((res:any)=>{
-        resolve(res)
-      }).catch((error:any)=>{
-        reject(error)
-      })
+        .then((res: any) => {
+          resolve(res)
+        }).catch((error: any) => {
+          reject(error)
+        })
     })
     return promesa
   }
@@ -72,26 +73,38 @@ export class Peticion {
 
     let promesa = new Promise((resolve, reject) => {
 
-      this.requestOptions =  {
+      this.requestOptions = {
         headers: new HttpHeaders({
-         //"":""
-        }), withCredentials: true, 
+          //"":""
+        }), withCredentials: true,
         body: payload
       }
       this.http.request("delete", url, this.requestOptions).toPromise()
-      .then((res:any)=>{
-        resolve(res)
-      }).catch((error:any)=>{
-        reject(error)
-      })
+        .then((res: any) => {
+          resolve(res)
+        }).catch((error: any) => {
+          reject(error)
+        })
     })
     return promesa
   }
 
-  UploadFile(file:File, api:string):Observable<any>{
+  UploadFile(file: File, api: string): Observable<any> {
     const formData = new FormData
     formData.append('file', file)
     return this.http.post(api, formData)
   }
 
+  downloadPdf(url: string, token?: string): Promise<Blob> {
+    return new Promise((resolve, reject) => {
+      const options = {
+        headers: new HttpHeaders(token ? { Authorization: `Bearer ${token}` } : {}),
+        responseType: 'blob' as 'json',
+        withCredentials: true
+      };
+      this.http.get(url, options).toPromise()
+        .then((res: any) => resolve(res))
+        .catch((err) => reject(err));
+    });
+  }
 }

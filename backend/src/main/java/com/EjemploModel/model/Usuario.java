@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,12 +23,16 @@ import lombok.Data;
 
 import lombok.NoArgsConstructor;
 
-@Entity
 @Table(name = "usuario")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Usuario {
+    @ManyToMany(mappedBy = "usuarios")
+    @JsonBackReference
+    private List<Comunidad> comunidades;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
