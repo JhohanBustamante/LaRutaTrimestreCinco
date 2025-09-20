@@ -19,6 +19,8 @@ import {
   ResourceImpl,
   RuntimeError,
   TransferState,
+  __objRest,
+  __spreadValues,
   assertInInjectionContext,
   computed,
   concatMap,
@@ -42,11 +44,7 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-TFDZVFTV.js";
-import {
-  __objRest,
-  __spreadValues
-} from "./chunk-GOMI4DH3.js";
+} from "./chunk-LZCZ3JPG.js";
 
 // node_modules/@angular/common/fesm2022/module.mjs
 var HttpHandler = class {
@@ -2774,4 +2772,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-KSVYVHWK.js.map
+//# sourceMappingURL=chunk-POP23RYG.js.map

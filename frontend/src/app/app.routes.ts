@@ -6,6 +6,7 @@ import { ServicioComponent } from './componentes/servicio/servicio.component';
 import { ComunidadComponent } from './componentes/comunidad/comunidad.component';
 import { FavoritosComponent } from './componentes/favoritos/favoritos.component';
 import { Registro } from './componentes/registro/registro';
+import { BlogAdmin } from './componentes/blog-admin/blog-admin';
 
 export const routes: Routes = [
     { path: "", component: InicioSesion, pathMatch: "full" },
@@ -14,5 +15,6 @@ export const routes: Routes = [
     { path: "servicios", component: ServicioComponent },
     { path: "comunidades", component: ComunidadComponent },
     { path: "favoritos", component: FavoritosComponent },
-    { path: "registro", component: Registro}
+    { path: "registro", component: Registro},
+    { path: "adminBlog", component: BlogAdmin}
 ];

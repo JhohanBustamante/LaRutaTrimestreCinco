@@ -54,7 +54,6 @@ public class ComunidadController {
                             "estado", false,
                             "mensaje", "Ya existe una comunidad con ese nombre"));
         }
-
         Usuario creador = usuarioRepository.findById(comunidad.getIdCreador())
                 .orElseThrow(() -> new RuntimeException("Usuario creador no encontrado"));
 
@@ -71,13 +70,13 @@ public class ComunidadController {
                 "comunidad", guardada));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/comunidad/actualizar/{id}")
     public Comunidad actualizar(@PathVariable Long id, @RequestBody Comunidad comunidad) {
         comunidad.setId(id);
         return comunidadService.guardar(comunidad);
     }
 
-    @DeleteMapping("/eliminar/{id}")
+    @DeleteMapping("/comunidad/eliminar/{id}")
     public void eliminar(@PathVariable Long id) {
         comunidadService.eliminar(id);
     }

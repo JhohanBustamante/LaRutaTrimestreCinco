@@ -15,13 +15,17 @@ export class Registro {
   apellido: string = ""
   correo: string = ""
   contrasena: string = ""
+  contrasena2: string = ""
   apodo: string = ""
 
   constructor(private peticion: Peticion, private router:Router) {
   }
 
   registrar() {
-    let post = {
+    if (this.contrasena != this.contrasena2 ) {
+      
+    } else {
+      let post = {
       host: this.peticion.urlReal,
       path: "/api/auth/register",
       payload: {
@@ -42,5 +46,7 @@ export class Registro {
       console.log(err)
       console.log(post.payload)
     })
+    }
+    
   }
 }

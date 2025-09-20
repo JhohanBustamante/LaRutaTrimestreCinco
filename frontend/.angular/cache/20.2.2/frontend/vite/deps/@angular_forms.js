@@ -1,6 +1,6 @@
 import {
   getDOM
-} from "./chunk-7QYZUL3I.js";
+} from "./chunk-DNRGEACW.js";
 import "./chunk-OUSM42MY.js";
 import {
   ApplicationRef,
@@ -24,6 +24,8 @@ import {
   SkipSelf,
   Subject,
   Version,
+  __spreadProps,
+  __spreadValues,
   afterNextRender,
   booleanAttribute,
   computed,
@@ -49,11 +51,7 @@ import {
   ɵɵdirectiveInject,
   ɵɵgetInheritedFactory,
   ɵɵlistener
-} from "./chunk-TFDZVFTV.js";
-import {
-  __spreadProps,
-  __spreadValues
-} from "./chunk-GOMI4DH3.js";
+} from "./chunk-LZCZ3JPG.js";
 
 // node_modules/@angular/forms/fesm2022/forms.mjs
 var BaseControlValueAccessor = class _BaseControlValueAccessor {
