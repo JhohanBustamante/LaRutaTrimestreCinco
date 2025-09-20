@@ -7,7 +7,9 @@
 /Users/Jhohan/Desktop/LaRuta/backend/src/main/java/com/EjemploModel/controller/ReporteController.java
 /Users/Jhohan/Desktop/LaRuta/backend/src/main/java/com/EjemploModel/controller/ReporteControllerUsuario.java
 /Users/Jhohan/Desktop/LaRuta/backend/src/main/java/com/EjemploModel/controller/UsuarioController.java
+/Users/Jhohan/Desktop/LaRuta/backend/src/main/java/com/EjemploModel/dto/ReporteDto.java
 /Users/Jhohan/Desktop/LaRuta/backend/src/main/java/com/EjemploModel/model/Comunidad.java
+/Users/Jhohan/Desktop/LaRuta/backend/src/main/java/com/EjemploModel/model/ComunidadUsuario.java
 /Users/Jhohan/Desktop/LaRuta/backend/src/main/java/com/EjemploModel/model/ImageFile.java
 /Users/Jhohan/Desktop/LaRuta/backend/src/main/java/com/EjemploModel/model/Reporte.java
 /Users/Jhohan/Desktop/LaRuta/backend/src/main/java/com/EjemploModel/model/ReporteFiltroDTO.java

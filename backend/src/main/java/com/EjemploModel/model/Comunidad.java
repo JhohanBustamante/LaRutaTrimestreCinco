@@ -1,40 +1,49 @@
 package com.EjemploModel.model;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name= "comunidad")
+@Table(name = "comunidad")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Comunidad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    
-    @Column(nullable = false)
     private String tematica;
-
-    @Column(length = 45)
+    private Long idCreador;
     private String nombre;
-
-    @Column(columnDefinition = "TEXT")
     private String descripcion;
 
-    @Column(name = "id_creador")
-    private Integer idCreador;
+    @OneToMany(mappedBy = "comunidad", cascade = CascadeType.ALL)
+    private List<Reporte> reportes;
 
+    @OneToMany(mappedBy = "comunidad", cascade = CascadeType.ALL)
+    private List<ComunidadUsuario> usuariosComunidad;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Tipo tipo;
+
+    private String categoria;
+    private String estado;
+    private LocalDate fecha;
+    
     public enum Tipo {
         CHAT_GRUPAL("Chat Grupal"),
         GRUPO("Grupo"),
         COMUNIDAD("Comunidad"),
         GRAN_COMUNIDAD("Gran Comunidad");
+
         private final String value;
+
         Tipo(String value) { this.value = value; }
         public String getValue() { return value; }
     }
-
-    }
+}

@@ -1,7 +1,9 @@
 package com.EjemploModel.service;
 
 
+import com.EjemploModel.model.Reporte;
 import com.EjemploModel.model.Usuario;
+import com.EjemploModel.repository.ReporteRepository;
 import com.EjemploModel.repository.UsuarioRepository;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfPTable;
@@ -52,5 +54,18 @@ public class ReporteService {
         }
 
         return new ByteArrayInputStream(out.toByteArray());
+    }
+    
+    private final ReporteRepository reporteRepository;
+    public ReporteService(ReporteRepository reporteRepository) {
+        this.reporteRepository = reporteRepository;
+    }
+
+    public Reporte crearReporte(Reporte reporte) {
+        return reporteRepository.save(reporte);
+    }
+
+    public List<Reporte> listarReportes() {
+        return reporteRepository.findAll();
     }
 }

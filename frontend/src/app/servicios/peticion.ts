@@ -12,12 +12,13 @@ export class Peticion {
   urlReal: string = "http://localhost:8080"
   requestOptions: any = {}
 
-  post = (url: string, payload: {}) => {
+  post = (url: string, payload: {}, token?: string) => {
 
     let promesa = new Promise((resolve, reject) => {
       this.requestOptions =  {
-        headers: new HttpHeaders({
-        }), withCredentials: true
+        headers: new HttpHeaders(
+          token ? { Authorization: `Bearer ${token}` } : {}
+        ), withCredentials: true
       }
       this.http.post(url, payload, this.requestOptions).toPromise()
       .then((res:any)=>{
@@ -29,14 +30,14 @@ export class Peticion {
     return promesa
   }
 
-  get = (url: string) => {
+  get = (url: string, token?: string) => {
 
     let promesa = new Promise((resolve, reject) => {
 
       this.requestOptions =  {
-        headers: new HttpHeaders({
-         //"":""
-        }), withCredentials: false
+        headers: new HttpHeaders(
+          token ? { Authorization: `Bearer ${token}` } : {}
+        ), withCredentials: true
       }
       this.http.get(url, this.requestOptions).toPromise()
       .then((res:any)=>{

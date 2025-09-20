@@ -2,24 +2,31 @@ package com.EjemploModel.model;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Data;
+import jakarta.persistence.*;
+import lombok.*;
 
-@Table(name = "comunidad")
 @Entity
+@Table(name = "reporte")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Reporte {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
-    private LocalDate fecha;
-    @Column
+
+    private String descripcion;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "comunidad_id")
+    private Comunidad comunidad;
+
     private String categoria;
-    @Column
     private String estado;
-    @Column
+    private LocalDate fecha;
     private Double cantidad;
 }

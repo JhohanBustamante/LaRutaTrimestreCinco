@@ -42,31 +42,26 @@ public class FileStorageService {
         if (!allowed.contains(file.getContentType()))
             throw new IOException("Tipo no permitido: " + file.getContentType());
 
-        // 1) Resolver extensión
         String original = StringUtils.cleanPath(file.getOriginalFilename() == null ? "" : file.getOriginalFilename());
         String ext = "";
         int dot = original.lastIndexOf('.');
         if (dot >= 0 && dot < original.length() - 1) ext = original.substring(dot).toLowerCase();
 
-        // 2) Generar nombre único
         String id = UUID.randomUUID().toString();
         String filename = id + ext;
         if (filename.contains("..")) throw new IOException("Nombre inválido");
 
-        // 3) Buscar usuario
         Usuario user = userRepo.findById(userId)
                 .orElseThrow(() -> new IOException("Usuario no encontrado: " + userId));
 
-        // 4) Guardar archivo en disco
         Path target = root.resolve(filename);
         Files.copy(file.getInputStream(), target, StandardCopyOption.REPLACE_EXISTING);
 
-        // 5) Persistir en BD (si falla, borro el archivo para no dejar basura)
         try {
             ImageFile entity = ImageFile.builder()
                     .id(id)
                     .filename(filename)
-                    .usuario(user) // <--- relación ManyToOne correcta
+                    .usuario(user)
                     .contentType(file.getContentType())
                     .size(file.getSize())
                     .createdAt(Instant.now())
