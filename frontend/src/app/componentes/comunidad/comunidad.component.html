@@ -29,20 +29,15 @@
                                 <p class="card-text">{{comunidad.descripcion}}</p>
                                 <h6>Tematica:</h6>
                                 <p class="card-text">{{comunidad.tematica}}</p>
-                                <a href="/servicios" class="btn btn-primary">Ver más</a>
+                                <a [routerLink]="['/servicios', comunidad.id]" class="btn btn-primary">Ver más</a>
                                 <a type="button" class="btn btn-primary" id="botonEliminar"
                                     (click)=eliminarComunidad(comunidad.id)>Eliminar</a>
                                 <a class="btn btn-primary" data-bs-toggle="modal" id="modal"
                                     data-bs-target="#modalActualizar" (click)="abrirModal(comunidad)"> Actualiza</a>
                             </div>
-
-
                         </div>
                     </div>
-
                 </div>
-
-
             </div>
 
         </div>
