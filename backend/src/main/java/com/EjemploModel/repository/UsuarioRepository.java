@@ -24,4 +24,5 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     Boolean existsByApodo(String apodo);
     Boolean existsByCorreo(String correo);
+
 }

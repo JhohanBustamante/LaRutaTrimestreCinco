@@ -39,6 +39,13 @@ public class ComunidadController {
     return comunidadService.listarTodos();
 }
 
+@GetMapping("/comunidad/creador/{idCreador}")//Este es nuevo porque no habia uno con el cual trabajar por el idCreador
+public ResponseEntity<List<ComunidadDto>> obtenerComunidadesPorCreador(@PathVariable Long idCreador) {
+    List<ComunidadDto> comunidades = comunidadService.obtenerPorIdCreador(idCreador);
+    return ResponseEntity.ok(comunidades);
+}
+
+
     @GetMapping("/comunidad/{id}")
     public Comunidad obtenerPorId(@PathVariable Long id) {
         return comunidadService.buscarPorId(id);

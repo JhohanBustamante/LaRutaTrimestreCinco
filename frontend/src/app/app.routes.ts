@@ -1,3 +1,4 @@
+
 import { Routes } from '@angular/router';
 import { InicioSesion } from './componentes/inicio-sesion/inicio-sesion';
 import { BlogPrincipal } from './componentes/blog-principal/blog-principal';
@@ -17,9 +18,12 @@ export const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'blog', component: BlogPrincipal, canActivate: [AuthGuard] },
     { path: 'perfil', component: Perfil, canActivate: [AuthGuard] },
-    { path: 'servicios', component: ServicioComponent, canActivate: [AuthGuard] },
+    { path: 'servicios/:id', component: ServicioComponent, canActivate: [AuthGuard] },
     { path: 'comunidades', component: ComunidadComponent, canActivate: [AuthGuard] },
     { path: 'favoritos', component: FavoritosComponent, canActivate: [AuthGuard] },
     { path: 'registro', component: Registro },
+    { path: 'BlogAdmin', component: BlogAdmin },
+    { path: 'ReporteMulti', component: ReporteMulti },
+
 ];
 

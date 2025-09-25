@@ -30,9 +30,19 @@ public class UsuarioService {
         return usuarioRepository.findById(id).orElse(null);
     }
 
-    public Usuario buscarPorApodo(String apodo) {
-        return usuarioRepository.findByApodo(apodo).orElse(null);
-    }
+    public UsuarioDto buscarPorApodo(String apodo) {
+    return usuarioRepository.findByApodo(apodo)
+            .map(u -> new UsuarioDto(
+                u.getId(),
+                u.getNombre(),
+                u.getCorreo(),
+                u.getApodo()
+            ))
+            .orElse(null);
+}
+
+
+
 
     public Usuario buscarPorCorreo(String correo) {
         return usuarioRepository.findByCorreo(correo).orElse(null);

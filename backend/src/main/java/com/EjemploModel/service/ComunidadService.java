@@ -17,6 +17,18 @@ import java.util.List;
 @Service
 public class ComunidadService {
 
+    private ComunidadDto convertirADto(Comunidad c) {
+        return new ComunidadDto(
+                c.getId(),
+                c.getNombre(),
+                c.getDescripcion(),
+                c.getTematica(),
+                c.getTipo(),
+                c.getCategoria(),
+                c.getEstado(),
+                c.getFecha());
+    }
+
     private final ComunidadRepository comunidadRepository;
     private final ComunidadUsuarioRepository comunidadUsuarioRepository;
     private final UsuarioRepository usuarioRepository;
@@ -31,20 +43,19 @@ public class ComunidadService {
     }
 
     public List<ComunidadDto> listarTodos() {
-    return comunidadRepository.findAll()
-        .stream()
-        .map(c -> new ComunidadDto(
-            c.getId(),
-            c.getNombre(),
-            c.getDescripcion(),
-            c.getTematica(),
-            c.getTipo(),
-            c.getCategoria(),
-            c.getEstado(),
-            c.getFecha()
-        ))
-        .toList();
-}
+        return comunidadRepository.findAll()
+                .stream()
+                .map(c -> new ComunidadDto(
+                        c.getId(),
+                        c.getNombre(),
+                        c.getDescripcion(),
+                        c.getTematica(),
+                        c.getTipo(),
+                        c.getCategoria(),
+                        c.getEstado(),
+                        c.getFecha()))
+                .toList();
+    }
 
     public Comunidad guardar(Comunidad comunidad) {
         return comunidadRepository.save(comunidad);
@@ -78,4 +89,14 @@ public class ComunidadService {
 
         return comunidadUsuarioRepository.save(cu);
     }
+
+    // Este es nuevo porque necesito un service que pida las comunidades con un id
+    // de usuario en especifico
+    public List<ComunidadDto> obtenerPorIdCreador(Long idCreador) {
+        return comunidadRepository.findByIdCreador(idCreador)
+                .stream()
+                .map(this::convertirADto)
+                .toList();
+    }
+
 }

@@ -1,14 +1,16 @@
 import { Header } from '../header/header';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import { Peticion } from '../../servicios/peticion';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Footer } from '../footer/footer';
+import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-comunidad',
-  imports: [Header, CommonModule, FormsModule, Footer],
+  imports: [Header, CommonModule, FormsModule, Footer, RouterModule],
   templateUrl: './comunidad.component.html',
   styleUrl: './comunidad.component.css'
 })
@@ -18,13 +20,14 @@ export class ComunidadComponent implements OnInit {
 
 
   comunidades: any[] = []
+  usuario: any= {}
 
   nuevaComunidad: any = {
     tematica: '',
     nombre: '',
     descripcion: '',
     tipo: '',
-    id_creador: 1,
+    id_creador: '',
     estado: 'activo'
   };
 
@@ -33,7 +36,7 @@ export class ComunidadComponent implements OnInit {
     nombre: '',
     descripcion: '',
     tipo: '',
-    id_creador: 1,
+    id_creador: this.usuario.id,
   };
 
   abrirModal(comunidad: any) {
@@ -44,7 +47,9 @@ export class ComunidadComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarComunidades();
+    this.buscarUsuario();
   }
+  
 
   cargarComunidades() {
     let get = {
@@ -58,6 +63,25 @@ export class ComunidadComponent implements OnInit {
       this.cdr.detectChanges()
     }).catch(() => {
       console.log("Error al obtener comunidades")
+    })
+  }
+
+  buscarUsuario(){
+
+    let apodo = localStorage.getItem('apodo') || undefined;
+    let get= {
+      host: this.peticion.urlReal,
+      path: "/usuario/apodo/"+ apodo,
+      payload: {
+      }
+    }
+    this.peticion.get(get.host + get.path).then((res:any)=>{
+      this.usuario= res.usuario;
+      this.nuevaComunidad.id_creador= this.usuario.id
+      this.cdr.detectChanges()
+    }).catch(()=> {
+      console.log("Usuario logueado:", this.usuario.usuario);
+      console.log("Error al encontrar usuario")
     })
   }
 
@@ -101,6 +125,14 @@ export class ComunidadComponent implements OnInit {
       return;
     }
 
+    if (!this.usuario || !this.usuario.id){
+      Swal.fire({
+        title: 'Error',
+        text: 'No se ha cargado el usuario aún. Intente de nuevo.',
+        icon: 'warning'
+      });
+      return;
+    }
 
     let post = {
       host: this.peticion.urlReal,
@@ -110,8 +142,9 @@ export class ComunidadComponent implements OnInit {
         nombre: this.nuevaComunidad.nombre,
         descripcion: this.nuevaComunidad.descripcion,
         tipo: this.nuevaComunidad.tipo,
-        idCreador: 1,
-        estado: 'activo'
+        idCreador: this.usuario.id,
+        estado: 'activo',
+        fecha: '24-09-2025'
       }
     }
 
@@ -128,7 +161,7 @@ export class ComunidadComponent implements OnInit {
         this.cargarComunidades();
               this.cdr.detectChanges()
 
-        this.nuevaComunidad = { tematica: '', nombre: '', descripcion: '', tipo: '', idCreador: 1, estado: 'activo'}
+        this.nuevaComunidad = { tematica: '', nombre: '', descripcion: '', tipo: '', idCreador: '', estado: 'activo'}
       }
     })
 

@@ -23,85 +23,18 @@
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                     tabindex="0">
                     <div class="row">
-                        <div class="mostrarCont col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
-                            <div class="card">
-                                <img src="/imagenes/static/imgGymUno.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Rutinas Personalizadas</h5>
-                                    <p class="card-text">Accede a planes de entrenamiento diseñados según tu nivel,
-                                        objetivos y tiempo disponible. Ya sea que busques ganar masa muscular, quemar
-                                        grasa o mejorar tu resistencia, tenemos la rutina perfecta para ti.
-
-                                    </p>
-                                    <a href="..." class="btn btn-primary" >Ver más</a>
-                                </div>
+                       <div *ngFor="let servicio of servicios"
+                        class="mostrarCont col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
+                        <div class="card">
+                            <img src="/imagenes/static/imgGymUno.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{servicio.nombre}}</h5>
+                                <p class="card-text">{{servicio.descripcion}}</p>
+                                <p class="card-text">{{servicio.categoria}}</p>
+                                <a routerLink="#" class="btn btn-primary">Ver más</a>
                             </div>
                         </div>
-                        <div class="mostrarCont col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
-                            <div class="card">
-                                <img src="/imagenes/static/imgGymDos.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Guías de Ejercicios en imagen</h5>
-                                    <p class="card-text">Únete a la comunidad en retos semanales diseñados para
-                                        motivarte y mantenerte activo. Comparte tu progreso, gana medallas virtuales y
-                                        reta a tus amigos a superarte.
-
-                                    </p>
-                                    <a href="..." class="btn btn-primary" >Ver más</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mostrarCont col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
-                            <div class="card">
-                                <img src="/imagenes/static/imgGymTres.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Inspiración de la Comunidad</h5>
-                                    <p class="card-text">Descubre publicaciones, fotos y logros de otros miembros de la
-                                        comunidad fitness. Comparte tus avances, recibe apoyo y motívate con historias
-                                        reales que te impulsarán a seguir.</p>
-                                    <a href="..." class="btn btn-primary" >Ver más</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mostrarCont col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
-                            <div class="card">
-                                <img src="/imagenes/static/imgGymDos.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Perfil Fitness Interactivo</h5>
-                                    <p class="card-text">Crea tu propio perfil, registra tus entrenamientos, controla tu
-                                        progreso y conecta con otros usuarios. Comparte fotos, deja comentarios y forma
-                                        parte de una red de personas que comparten tu estilo de vida saludable.
-                                    </p>
-                                    <a href="..." class="btn btn-primary" >Ver más</a>
-                                </div>
-                            </div>
-                        </div>
-                                            <div class="mostrarCont col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
-                            <div class="card">
-                                <img src="/imagenes/static/imgGymUno.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Desafíos Semanales</h5>
-                                    <p class="card-text">Únete a la comunidad en retos semanales diseñados para
-                                        motivarte y mantenerte activo. Comparte tu progreso, gana medallas virtuales y
-                                        reta a tus amigos a superarte.</p>
-                                    <a href="..." class="btn btn-primary" >Ver más</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mostrarCont col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
-                            <div class="card">
-                                <img src="/imagenes/static/imgGymTres.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Guías Nutricionales</h5>
-                                    <p class="card-text">Accede a planes alimenticios equilibrados y recetas saludables
-                                        creadas por expertos. Aprende a combinar tu entrenamiento con una buena
-                                        alimentación para lograr resultados más rápidos y duraderos.
-
-                                    </p>
-                                    <a href="..." class="btn btn-primary" >Ver más</a>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
                     </div>
                 </div>
 
@@ -110,14 +43,27 @@
                     <div class="row" id="contenedorCrear">
                         <div class="mostrarCont col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                             <div class="mb-3">
-                                <label for="nuevaPublicacionPersonal" class="form-label">¿Algo nuevo?</label>
+                                <label for="nuevaPublicacionPersonal" class="form-label">Nombre del servicio</label>
                                 <input type="text" class="form-control" id="nuevaPublicacionPersonal"
-                                    placeholder="Describe el contenido, por favor">
+                                    placeholder="Describe el contenido, por favor" [(ngModel)]="ServicioCrear.titulo">
                             </div>
                             <div class="mb-3 ">
-                                <label for="exampleFormControlTextarea1" class="form-label">Descripción del contenido</label>
+                                <label for="exampleFormControlTextarea1" class="form-label">Descripción del contenido de tu servicio</label>
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
-                                    placeholder="Descripción de lo que desees comentarnos. Con todo gusto te escuchamos."></textarea>
+                                    placeholder="Descripción de lo que desees comentarnos. Con todo gusto te escuchamos." [(ngModel)]="ServicioCrear.descripcion"></textarea>
+                            </div>
+                            <div class="mb-3 ">
+                                <label for="exampleFormControlTextarea1" class="form-label">Cetegoria del contenido</label>
+                            <select class="form-control" [(ngModel)]="ServicioCrear.categoria" name="categoria">
+                                    <option value="">Seleccione</option>
+                                    <option value="NUTRICION">Nutrición</option>
+                                    <option value="ENTRENAMIENTO">Entrenamiento</option>
+                                    <option value="SALUD_MENTAL">Salud Mental</option>
+                                    <option value="BIENESTAR">Bienestar General</option>
+                                    <option value="PRODUCTIVIDAD">Productividad</option>
+                                    <option value="DESARROLLO_PERSONAL">Desarrollo Personal</option>
+                                    <option value="MOTIVACION">Motivación</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
@@ -125,12 +71,13 @@
                                 <label for="formFileMultiple" class="form-label">Seleccionar varios archivos</label>
                                 <input class="form-control" type="file" id="formFileMultiple" multiple>
                             </div>
-                            <button type="button" class="btn btn-primary">Publicar</button>
+                            <button type="button" class="btn btn-primary" (click)="crearServicio()">Publicar</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </main>
+
+<app-footer></app-footer>

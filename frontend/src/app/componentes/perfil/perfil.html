@@ -10,6 +10,8 @@
                             href="#list-profile" role="tab" aria-controls="list-profile">Crear publicación</a>
                         <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list"
                             href="#list-settings" role="tab" aria-controls="list-settings">Tus publicaciones</a>
+                        <a class="list-group-item list-group-item-action" id="list-comunidades-list" data-bs-toggle="list"
+                            href="#list-comunidades" role="tab" aria-controls="list-comunidades">Tus comunidades</a>
                     </div>
                 </div>
                 <div class="col-12 col-md-8 col-lg-8" id="Contenedor principal">
@@ -212,6 +214,27 @@
                                 </div>
 
                             </div>
+                        </div>
+                        <div class="tab-pane fade" id="list-comunidades" role="tabpanel"
+                            aria-labelledby="list-comunidades-list">
+
+                              <div *ngFor="let comunidad of comunidades"
+                        class="mostrarCont col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="card">
+                            <img src="/imagenes/static/imgGymUno.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{comunidad.nombre}}</h5><!--Falta enlasar con backend-->
+                                <p class="card-text">{{comunidad.descripcion}}</p>
+                                <h6>Tematica:</h6>
+                                <p class="card-text">{{comunidad.tematica}}</p>
+                                <a [routerLink]="['/servicios', comunidad.id]" class="btn btn-primary">Ver más</a>
+                                <a type="button" class="btn btn-primary" id="botonEliminar"
+                                    (click)=eliminarComunidad(comunidad.id)>Eliminar</a>
+                                <a class="btn btn-primary" data-bs-toggle="modal" id="modal"
+                                    data-bs-target="#modalActualizar" (click)="abrirModal(comunidad)"> Actualiza</a>
+                            </div>
+                        </div>
+                    </div>
                         </div>
                     </div>
                 </div>

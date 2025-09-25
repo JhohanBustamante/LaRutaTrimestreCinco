@@ -31,6 +31,7 @@ public class UsuarioController {
     return usuarioService.buscarPorId(id);
   }
 
+
   @PutMapping("/actualizar/{id}")
   public ResponseEntity<?> actualizarUsuario(
       @PathVariable Long id,
@@ -43,8 +44,8 @@ public class UsuarioController {
           .body(Map.of("estado", false, "mensaje", "Ya existe un usuario con ese correo"));
     }
 
-    Usuario existenteApodo = usuarioService.buscarPorApodo(datosNuevos.getApodo());
-    if (existenteApodo != null && !existenteApodo.getId().equals(id)) {
+    UsuarioDto existenteApodo = usuarioService.buscarPorApodo(datosNuevos.getApodo());
+    if (existenteApodo != null && !existenteApodo.id().equals(id)) {
       return ResponseEntity
           .badRequest()
           .body(Map.of("estado", false, "mensaje", "Ya existe un usuario con ese apodo"));
@@ -60,5 +61,25 @@ public class UsuarioController {
           Map.of("estado", true, "mensaje", "Usuario actualizado correctamente", "usuario", actualizado));
     }
   }
+
+  @GetMapping("usuario/apodo/{apodo}")
+    public ResponseEntity<Map<String, Object>> obtenerPorApodo(@PathVariable String apodo) {
+        UsuarioDto usuario = usuarioService.buscarPorApodo(apodo);
+
+        if (usuario == null) {
+            return ResponseEntity
+                  .badRequest()
+                  .body(Map.of("estado", false,
+                               "mensaje", "Usuario no encontrado"));
+        } else {
+            return ResponseEntity.ok(
+              Map.of(
+                "estado", true,
+                "mensaje", "Usuario encontrado",
+                "usuario", usuario
+              )
+            );
+        }
+    }
 
 }

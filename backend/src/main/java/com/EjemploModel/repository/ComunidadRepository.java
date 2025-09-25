@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import com.EjemploModel.model.Comunidad;
 import com.EjemploModel.model.Reporte;
@@ -28,4 +29,7 @@ public interface ComunidadRepository extends JpaRepository<Comunidad, Long> {
 
     List<Comunidad> findByTipo(Comunidad.Tipo tipo);
 
+
+    //nuevo para buscar comunidades por el id del creador.
+    List<Comunidad> findByIdCreador(Long idCreador);
 }
