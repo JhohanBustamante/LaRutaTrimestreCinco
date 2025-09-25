@@ -144,7 +144,7 @@ export class ComunidadComponent implements OnInit {
         tipo: this.nuevaComunidad.tipo,
         idCreador: this.usuario.id,
         estado: 'activo',
-        fecha: '24-09-2025'
+        fecha: '2025-09-24'
       }
     }
 
